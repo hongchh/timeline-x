@@ -56,6 +56,7 @@ export default {
     width: 100%
     position: absolute
     top: 100px
+    bottom: 0
 
 .el-dropdown-menu .menu-link
   font-size: 20px

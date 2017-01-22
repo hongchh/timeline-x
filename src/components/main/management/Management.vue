@@ -1,10 +1,37 @@
 <template lang="jade">
-  div#management
-    h1 Management
+div#management
+  el-row(:gutter="20")
+    el-col(:span="10", :offset="1")
+      time-analysis-per-month
+      time-analysis-per-year
+    el-col(:span="10", :offset="2")
+      time-analysis-by-type
+  el-row(:gutter="20")
+    el-col(:span="22", :offset="1")
+      edit-time-record
 </template>
 
 <script>
-  export default {
-    name: 'management'
+import EditTimeRecord from './EditTimeRecord'
+import TimeAnalysisByType from './TimeAnalysisByType'
+import TimeAnalysisPerMonth from './TimeAnalysisPerMonth'
+import TimeAnalysisPerYear from './TimeAnalysisPerYear'
+
+export default {
+  name: 'management',
+  components: {
+    EditTimeRecord,
+    TimeAnalysisByType,
+    TimeAnalysisPerMonth,
+    TimeAnalysisPerYear
   }
+}
 </script>
+
+<style lang="sass">
+#management
+  width: 100%
+  height: 100%
+  position: absolute
+  background: #eee
+</style>
