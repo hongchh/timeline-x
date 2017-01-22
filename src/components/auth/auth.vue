@@ -1,15 +1,22 @@
 <template lang="jade">
-  div#auth
-    h1 Auth Page
+div#auth
+ star-flow
 </template>
 
 <script>
-  export default {
-    name: 'auth'
-  }
+import StarFlow from './StarFlow'
+
+export default {
+  name: 'auth',
+  components: { StarFlow }
+}
 </script>
 
 <style lang="sass">
-  #auth
-    border: 1px solid red
+#auth
+  width: 100%
+  height: 100%
+  background: url(../../assets/auth-bg.jpg) no-repeat
+  background-size: 100% 100%
+  background-attachment: fixed
 </style>
