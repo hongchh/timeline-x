@@ -34,4 +34,5 @@ export default {
   height: 100%
   position: absolute
   background: #eee
+  padding-top: 30px
 </style>
