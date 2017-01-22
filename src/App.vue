@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="sass">
-#app
+html, body, #app
   width: 100%
   height: 100%
   position: absolute

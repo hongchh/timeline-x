@@ -21,8 +21,8 @@ export default {
       },
       legend: {
         orient: 'vertical',
-        left: '30px',
-        top: '15px',
+        left: '10%',
+        top: '5%',
         data: ['学习', '运动', '休闲', '娱乐', '工作']
       },
       series: [{
