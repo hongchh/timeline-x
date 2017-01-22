@@ -93,10 +93,11 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## 模块划分
 ```txt
-├─auth：[权限]界面
-└─app：应用主界面，包含顶栏以及子模块management和timeline
-   ├─management：[管理]界面
-   └─time-show：[时光]界面
-         ├─timeline：时光轴展示
-         └─time-slide：轮播图展示
+└─app
+   ├─auth：[权限]界面
+   └─main：应用主界面，包含顶栏以及子模块management和timeline
+      ├─management：[管理]界面
+      └─time-show：[时光]界面
+            ├─timeline：时光轴展示
+            └─time-slide：轮播图展示
 ```
