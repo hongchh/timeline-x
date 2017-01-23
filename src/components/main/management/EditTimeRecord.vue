@@ -7,11 +7,11 @@ div#edit-time-record
       el-col(:span="8", :offset="10")
         el-date-picker#edit-time-record-date(v-model="date", type="date", placeholder="选择日期", :editable="false")
     el-row(:gutter="20", v-for="(record, index) in records")
-      el-col(:span="1")
+      el-col(:span="1", :offset="1")
         span {{ index + 1 }}.
       el-col(:span="11")
         el-input#content(v-model="record.content", placeholder="内容")
-      el-col(:span="5", :offset="1")
+      el-col(:span="5")
         el-input-number(v-model="record.time", :step="0.1", :min="0", :max="24")
       el-col(:span="5", :offset="1")
         el-dropdown(@command="handleCommand")

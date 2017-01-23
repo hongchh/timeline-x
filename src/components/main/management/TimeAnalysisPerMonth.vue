@@ -63,13 +63,6 @@ export default {
       dataZoom: [{ type: 'inside' }],
       series: [{
         type: 'bar',
-        itemStyle: { normal: {color: 'rgba(0,0,0,0.05)'} },
-        barGap: '-100%',
-        barCategoryGap: '40%',
-        data: dataShadow,
-        animation: false
-      }, {
-        type: 'bar',
         itemStyle: {
           normal: {
             color: new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -102,5 +95,5 @@ export default {
   width: 100%
   #bar-chart-month
     width: 100%
-    height: 300px
+    height: 320px
 </style>

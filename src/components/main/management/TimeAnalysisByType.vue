@@ -3,7 +3,7 @@ div#time-analysis-by-type
   el-card
     div#pie-chart
     el-row(:gutter="20")
-      el-col(:span="6", :offset="3")
+      el-col(:span="7", :offset="2")
         el-date-picker(v-model="month", type="month", placeholder="选择月份")
       el-col(:span="5", :offset="1")
         el-input(v-model="totalTime", :disabled="true", placeholder="Total:")
@@ -74,5 +74,5 @@ export default {
   width: 100%
   #pie-chart
     width: 100%
-    height: 550px
+    height: 520px
 </style>
