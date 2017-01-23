@@ -17,7 +17,8 @@ div#main
       el-col(:span="2")
         span.header-item(@click="lockScreen") 锁屏
   div#body
-    router-view
+    transition(name="slide")
+      router-view
 </template>
 
 <script>
@@ -41,8 +42,9 @@ export default {
     width: 100%
     height: 100px
     position: absolute
-    background-color: rgba(21, 70, 251, 0.75)
+    background-color: #4b71fd
     line-height: 100px
+    z-index: 99
     .el-row
       vertical-align: middle
       .header-item, #logo
@@ -57,9 +59,19 @@ export default {
     position: absolute
     top: 100px
     bottom: 0
+    background: #eee
 
 .el-dropdown-menu .menu-link
   font-size: 20px
   text-decoration: none
   color: black
+
+.slide-enter-active, .slide-leave-active
+  transition: all .5s ease-out
+.slide-leave-active
+  transform: translate(0, -100%) scale(0.6)
+  opacity: 0
+.slide-enter
+  transform: translate(0, 100%) scale(0.6)
+  opacity: 0
 </style>

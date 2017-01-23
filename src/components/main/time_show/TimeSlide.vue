@@ -2,7 +2,7 @@
 div#time-slide
   el-row(:gutter="20")
     el-col(:span="20", :offset="2")
-      el-carousel(:interval="4000", type="card", height="650px")
+      el-carousel(:interval="5000", type="card", height="650px")
         el-carousel-item(v-for="record in records")
           div.slide-holder
             div.record-info
@@ -79,5 +79,5 @@ export default {
       bottom: 0
       color: white
       background: rgba(0, 0, 0, 0.3)
-      padding-left: 20px
+      padding-left: 35px
 </style>
