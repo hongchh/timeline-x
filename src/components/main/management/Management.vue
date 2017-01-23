@@ -1,13 +1,11 @@
 <template lang="jade">
 div#management
   el-row(:gutter="20")
-    el-col(:span="10", :offset="1")
+    el-col(:span="10", :offset="2")
       time-analysis-per-month
       time-analysis-per-year
-    el-col(:span="10", :offset="2")
+    el-col(:span="9", :offset="1")
       time-analysis-by-type
-  el-row(:gutter="20")
-    el-col(:span="22", :offset="1")
       edit-time-record
 </template>
 

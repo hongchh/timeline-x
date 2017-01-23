@@ -1,6 +1,14 @@
 <template lang="jade">
 div#time-analysis-by-type
-  div#pie-chart
+  el-card
+    div#pie-chart
+    el-row(:gutter="20")
+      el-col(:span="6", :offset="3")
+        el-date-picker(v-model="month", type="month", placeholder="选择月份")
+      el-col(:span="5", :offset="1")
+        el-input(v-model="totalTime", :disabled="true", placeholder="Total:")
+      el-col(:span="5", :offset="1")
+        el-input(v-model="avgTime", :disabled="true", placeholder="AVG:")
 </template>
 
 <script>
@@ -8,6 +16,13 @@ import Echarts from 'echarts/lib/echarts'
 
 export default {
   name: 'time-analysis-by-type',
+  data () {
+    return {
+      month: '2017-01',
+      totalTime: 'Total: 400h',
+      avgTime: 'AVG: 50h'
+    }
+  },
   mounted () {
     let option = {
       title: {
@@ -17,7 +32,7 @@ export default {
       },
       tooltip: {
         trigger: 'item',
-        formatter: '{a} <br/>{b} : {c} ({d}%)'
+        formatter: '{b} : {c} 小时 ({d}%)'
       },
       legend: {
         orient: 'vertical',
@@ -28,8 +43,8 @@ export default {
       series: [{
         name: '时间比重',
         type: 'pie',
-        radius: '55%',
-        center: ['50%', '70%'],
+        radius: '60%',
+        center: ['50%', '55%'],
         data: [
           { value: 335, name: '学习' },
           { value: 310, name: '运动' },
@@ -57,12 +72,7 @@ export default {
 <style lang="sass">
 #time-analysis-by-type
   width: 100%
-  height: 650px
-  background: white
-  padding-top: 10px
-  border: 1px solid rgba(0, 0, 0, 0.3)
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3)
   #pie-chart
     width: 100%
-    height: 100%
+    height: 550px
 </style>

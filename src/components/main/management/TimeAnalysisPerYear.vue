@@ -1,6 +1,14 @@
 <template lang="jade">
 div#time-analysis-per-year
-  div#bar-chart-year
+  el-card
+    div#bar-chart-year
+    el-row(:gutter="20")
+      el-col(:span="6", :offset="3")
+        el-date-picker(v-model="year", type="year", placeholder="选择年份")
+      el-col(:span="5", :offset="1")
+        el-input(v-model="totalTime", :disabled="true", placeholder="Total:")
+      el-col(:span="5", :offset="1")
+        el-input(v-model="avgTime", :disabled="true", placeholder="AVG:")
 </template>
 
 <script>
@@ -8,6 +16,13 @@ import Echarts from 'echarts/lib/echarts'
 
 export default {
   name: 'time-analysis-per-year',
+  data () {
+    return {
+      year: '2017',
+      totalTime: 'Total: 400h',
+      avgTime: 'AVG: 50h'
+    }
+  },
   mounted () {
     let data = []
     let dataAxis = []
@@ -86,12 +101,7 @@ export default {
 #time-analysis-per-year
   margin-top: 20px
   width: 100%
-  height: 300px
-  background: white
-  padding-top: 10px
-  border: 1px solid rgba(0, 0, 0, 0.3)
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3)
   #bar-chart-year
     width: 100%
-    height: 100%
+    height: 300px
 </style>
