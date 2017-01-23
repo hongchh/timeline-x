@@ -19,20 +19,46 @@ export default {
   data () {
     return {
       month: '2017-01',
-      totalTime: 'Total: 400h',
-      avgTime: 'AVG: 50h'
+      totalTime: 'Total: ',
+      avgTime: 'AVG: '
+    }
+  },
+  computed: {
+    // 获取选中的年月份的记录并计算每天的总时间
+    timeRecordsOfMonth () {
+      return this.$store.state.timeRecords.filter(record => {
+        return (record.year === this.month.split('-')[0] &&
+          record.month === this.month.split('-')[1])
+      }).map(record => {
+        let totalTimeOfDay = 0
+        for (let item of record.items) {
+          totalTimeOfDay += Number.parseFloat(item.time)
+        }
+        record.totalTimeOfDay = totalTimeOfDay
+        return record
+      })
     }
   },
   mounted () {
-    let data = []
-    let dataAxis = []
-    let dataShadow = []
-    const yMax = 24
-    for (let i = 0; i < 31; ++i) {
-      data.push(Math.random() * 24)
-      dataAxis.push(i + 1)
-      dataShadow.push(yMax)
+    // 按照昨天来设置默认年月份，因为今天的时间可能还没有记录
+    let yesterday = new Date((new Date()).getTime() - 86400000)
+    let month = yesterday.getMonth() + 1
+    if (month < 10) month = '0' + month
+    this.month = yesterday.getFullYear() + '-' + month
+
+    // 准备数据，为了防止数据为空导致渲染不出图表，所以在数据为空时使用默认数据
+    let totalOfMonth = 0
+    let data = this.timeRecordsOfMonth === [] ? new Array(31).fill(0) : []
+    let dataAxis = this.timeRecordsOfMonth === [] ? new Array(31).map((v, i) => i + 1) : []
+    for (let record of this.timeRecordsOfMonth) {
+      data.push(record.totalTimeOfDay)
+      dataAxis.push(record.date)
+      totalOfMonth += record.totalTimeOfDay
     }
+    this.totalTime = 'Total: ' + totalOfMonth
+    this.avgTime = 'AVG: ' + (totalOfMonth / this.timeRecordsOfMonth.length)
+
+    // 渲染柱形图的配置
     let option = {
       title: {
         text: '每月时间统计',
@@ -56,6 +82,7 @@ export default {
         z: 10
       },
       yAxis: {
+        max: 24,
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: { textStyle: { color: '#999' } }
@@ -84,7 +111,6 @@ export default {
     }
 
     let chart = Echarts.init(document.querySelector('#bar-chart-month'))
-    // TODO: 根据父组件传入的数据进行相关的分析展示
     chart.setOption(option)
   }
 }
