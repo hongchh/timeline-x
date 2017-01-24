@@ -2,14 +2,14 @@
 div#timeline
   div.timeline-wrapper
     div.timeline
-      div.timeline-records(v-for="record in records")
+      div.timeline-records(v-for="(record, i) in $store.state.timeRecords.reverse()")
         div.side-info
           span.year {{ record.year }}
-        div.timeline-icon(:class="record.icon_bg")
+        div.timeline-icon(:class="iconBg[Number.parseInt(i%12)]")
           div.month {{ record.month }} 月
             span.date {{ record.date }}
         div.timeline-content
-          h2.day {{ record.day }}
+          h2.day {{ days[record.day] }}
           div.details
             p(v-for="(item, index) in record.items")
               {{ index + 1 + '. ' + item.content + ', ' + item.time + 'h.' }}
@@ -20,33 +20,29 @@ export default {
   name: 'timeline',
   data () {
     return {
-      records: [{
-        year: '2017',
-        month: '01',
-        date: '22',
-        day: '星期日',
-        icon_bg: 'iconbg-turqoise',
-        items: [{
-          content: '开发timeline-x',
-          time: '9'
-        }, {
-          content: '跑步',
-          time: '0.5'
-        }]
-      }, {
-        year: '2017',
-        month: '01',
-        date: '23',
-        day: '星期一',
-        icon_bg: 'iconbg-black',
-        items: [{
-          content: '开发timeline-x',
-          time: '9'
-        }, {
-          content: '跑步',
-          time: '0.5'
-        }]
-      }]
+      iconBg: [
+        'iconbg-turqoise',
+        'iconbg-black',
+        'iconbg-brown',
+        'iconbg-indigo',
+        'iconbg-purple',
+        'iconbg-grey',
+        'iconbg-blue',
+        'iconbg-red',
+        'iconbg-orange',
+        'iconbg-opal',
+        'iconbg-green',
+        'iconbg-pink'
+      ],
+      days: [
+        '星期日',
+        '星期一',
+        '星期二',
+        '星期三',
+        '星期四',
+        '星期五',
+        '星期六'
+      ]
     }
   }
 }
@@ -54,17 +50,13 @@ export default {
 
 <style lang="sass">
 #timeline
-  width: 90%
-  height: 90%
+  width: 100%
+  height: 100%
   position: absolute
-  top: 5%
-  left: 5%
-  border: 10px solid rgba(21, 70, 251, 0.75)
-  border-radius: 30px
-  box-shadow: 2px 2px 2px grey
   background: url(../../../assets/timeline-bg-0.jpg) no-repeat
   background-size: 100% 100%
   background-attachment: fixed
+  overflow: scroll
   .timeline-wrapper, .timeline-wrapper *
     box-sizing: border-box
     padding: 0

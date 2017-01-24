@@ -9,7 +9,7 @@ import Management from '../components/main/management/Management'
 import Timeline from '../components/main/time_show/Timeline'
 import TimeSlide from '../components/main/time_show/TimeSlide'
 
-import store from '../store'
+// import store from '../store'
 
 const router = new Router({
   mode: 'history',
@@ -29,15 +29,15 @@ const router = new Router({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.path === '/') {
-    next('/auth')
-  } else if (to.path === '/auth' && !store.state.lockScreen ||
-    to.path !== '/auth' && store.state.lockScreen) {
-    next(false)
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/') {
+//     next('/auth')
+//   } else if (to.path === '/auth' && !store.state.lockScreen ||
+//     to.path !== '/auth' && store.state.lockScreen) {
+//     next(false)
+//   } else {
+//     next()
+//   }
+// })
 
 export default router
