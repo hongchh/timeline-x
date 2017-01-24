@@ -4,11 +4,11 @@ div#time-analysis-by-type
     div#pie-chart
     el-row(:gutter="20")
       el-col(:span="7", :offset="2")
-        el-date-picker(v-model="month", type="month", placeholder="选择月份")
+        el-date-picker(v-model="month", type="month", placeholder="选择月份", @change="drawChart")
       el-col(:span="5", :offset="1")
-        el-input(v-model="totalTime", :disabled="true", placeholder="Total:")
+        el-input(:value="'Total: ' + totalTime", :disabled="true", placeholder="Total:")
       el-col(:span="5", :offset="1")
-        el-input(v-model="avgTime", :disabled="true", placeholder="AVG:")
+        el-input(:value="'AVG: ' + (totalTime / 5)", :disabled="true", placeholder="AVG:")
 </template>
 
 <script>
@@ -17,54 +17,81 @@ import Echarts from 'echarts/lib/echarts'
 export default {
   name: 'time-analysis-by-type',
   data () {
-    return {
-      month: '2017-01',
-      totalTime: 'Total: 400h',
-      avgTime: 'AVG: 50h'
+    // 按照昨天来设置默认年月份，因为今天的时间可能还没有记录
+    return { month: this.format(new Date((new Date()).getTime() - 86400000)) }
+  },
+  mounted () { this.drawChart() },
+  computed: {
+    // 填充图表的数据
+    chartData () {
+      if (typeof this.month !== 'string') {
+        this.month = this.format(this.month)
+      }
+      let data = {
+        '学习': { value: 0, name: '学习' },
+        '工作': { value: 0, name: '工作' },
+        '运动': { value: 0, name: '运动' },
+        '休闲': { value: 0, name: '休闲' },
+        '娱乐': { value: 0, name: '娱乐' }
+      }
+      this.$store.state.timeRecords.filter(record => {
+        return (record.year === this.month.split('-')[0] &&
+          record.month === this.month.split('-')[1])
+      }).forEach(record => {
+        record.items.forEach(item => {
+          data[item.type].value += Number.parseFloat(item.time)
+        })
+      })
+      return Object.values(data)
+    },
+    // 本月总的时间支出
+    totalTime () {
+      let total = 0
+      this.chartData.forEach(data => (total += data.value))
+      return total
     }
   },
-  mounted () {
-    let option = {
-      title: {
-        text: '分类时间统计',
-        subtext: '单位：小时',
-        x: 'center'
-      },
-      tooltip: {
-        trigger: 'item',
-        formatter: '{b} : {c} 小时 ({d}%)'
-      },
-      legend: {
-        orient: 'vertical',
-        left: '10%',
-        top: '5%',
-        data: ['学习', '运动', '休闲', '娱乐', '工作']
-      },
-      series: [{
-        name: '时间比重',
-        type: 'pie',
-        radius: '60%',
-        center: ['50%', '55%'],
-        data: [
-          { value: 335, name: '学习' },
-          { value: 310, name: '运动' },
-          { value: 234, name: '休闲' },
-          { value: 135, name: '娱乐' },
-          { value: 1548, name: '工作' }
-        ],
-        itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
+  methods: {
+    format (date) {
+      let month = date.getMonth() + 1
+      if (month < 10) month = '0' + month
+      return date.getFullYear() + '-' + month
+    },
+    drawChart (val) {
+      let option = {// 渲染圆饼图的配置
+        title: {
+          text: '分类时间统计',
+          subtext: '单位：小时',
+          x: 'center'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b} : {c} 小时 ({d}%)'
+        },
+        legend: {
+          orient: 'vertical',
+          left: '10%',
+          top: '5%',
+          data: ['学习', '工作', '运动', '休闲', '娱乐']
+        },
+        series: [{
+          name: '时间比重',
+          type: 'pie',
+          radius: '60%',
+          center: ['50%', '55%'],
+          data: this.chartData,
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
           }
-        }
-      }]
+        }]
+      }
+      let chart = Echarts.init(document.querySelector('#pie-chart'))
+      chart.setOption(option)
     }
-
-    let chart = Echarts.init(document.querySelector('#pie-chart'))
-    // TODO: 根据父组件传入的数据进行相关的分析展示
-    chart.setOption(option)
   }
 }
 </script>

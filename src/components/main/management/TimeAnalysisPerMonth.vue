@@ -6,9 +6,9 @@ div#time-analysis-per-month
       el-col(:span="6", :offset="3")
         el-date-picker(v-model="month", type="month", placeholder="选择月份", @change="drawChart")
       el-col(:span="5", :offset="1")
-        el-input(v-model="totalTime", :disabled="true", placeholder="Total:")
+        el-input(:value="'Total: ' + totalTime", :disabled="true", placeholder="Total:")
       el-col(:span="5", :offset="1")
-        el-input(v-model="avgTime", :disabled="true", placeholder="AVG:")
+        el-input(:value="'AVG: ' + (totalTime / chartData.filter(x => x!== 0).length)", :disabled="true", placeholder="AVG:")
 </template>
 
 <script>
@@ -17,52 +17,42 @@ import Echarts from 'echarts/lib/echarts'
 export default {
   name: 'time-analysis-per-month',
   data () {
-    return {
-      month: '2017-01',
-      totalTime: 'Total: ',
-      avgTime: 'AVG: '
-    }
-  },
-  mounted () {
     // 按照昨天来设置默认年月份，因为今天的时间可能还没有记录
-    let yesterday = new Date((new Date()).getTime() - 86400000)
-    let month = yesterday.getMonth() + 1
-    if (month < 10) month = '0' + month
-    this.month = yesterday.getFullYear() + '-' + month
-    this.drawChart()
+    return { month: this.format(new Date((new Date()).getTime() - 86400000)) }
   },
+  mounted () { this.drawChart() },
   computed: {
     // 获取选中的年月份的记录并计算每天的总时间
-    timeRecordsOfMonth () {
-      return this.$store.state.timeRecords.filter(record => {
+    chartData () {
+      if (typeof this.month !== 'string') {
+        this.month = this.format(this.month)
+      }
+      let data = new Array(31).fill(0)
+      this.$store.state.timeRecords.filter(record => {
         return (record.year === this.month.split('-')[0] &&
           record.month === this.month.split('-')[1])
-      }).map(record => {
-        let totalTimeOfDay = 0
-        for (let item of record.items) {
-          totalTimeOfDay += Number.parseFloat(item.time)
-        }
-        record.totalTimeOfDay = totalTimeOfDay
-        return record
+      }).forEach(record => {
+        record.items.forEach(item => {
+          data[Number.parseInt(record.date) - 1] += Number.parseFloat(item.time)
+        })
       })
+      return data
+    },
+    // 本月总的时间支出
+    totalTime () {
+      let total = 0
+      this.chartData.forEach(data => (total += data.value))
+      return total
     }
   },
   methods: {
-    drawChart (val) {
-      if (val) this.month = val
-      // 准备数据，为了防止数据为空导致渲染不出图表，所以在数据为空的项使用默认值0
-      let totalOfMonth = 0
-      let data = new Array(31).fill(0)
-      let dataAxis = new Array(31).fill(0).map((v, i) => i)
-      for (let record of this.timeRecordsOfMonth) {
-        data[Number.parseInt(record.date)] = record.totalTimeOfDay
-        totalOfMonth += record.totalTimeOfDay
-      }
-      this.totalTime = 'Total: ' + totalOfMonth
-      this.avgTime = 'AVG: ' + (totalOfMonth / this.timeRecordsOfMonth.length)
-
-      // 渲染柱形图的配置
-      let option = {
+    format (date) {
+      let month = date.getMonth() + 1
+      if (month < 10) month = '0' + month
+      return date.getFullYear() + '-' + month
+    },
+    drawChart () {
+      let option = {// 渲染柱形图的配置
         title: {
           text: '每月时间统计',
           subtext: '单位：小时',
@@ -73,7 +63,7 @@ export default {
           formatter: '{c} 小时'
         },
         xAxis: {
-          data: dataAxis,
+          data: new Array(31).fill(0).map((v, i) => i + 1),
           axisLabel: {
             inside: true,
             textStyle: {
@@ -109,10 +99,9 @@ export default {
               ])
             }
           },
-          data: data
+          data: this.chartData
         }]
       }
-
       let chart = Echarts.init(document.querySelector('#bar-chart-month'))
       chart.setOption(option)
     }
