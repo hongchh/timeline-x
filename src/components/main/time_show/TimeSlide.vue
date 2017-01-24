@@ -2,9 +2,9 @@
 div#time-slide
   el-row(:gutter="20")
     el-col(:span="20", :offset="2")
-      el-carousel(:interval="5000", type="card", height="650px", indicator-position="none")
-        el-carousel-item(v-for="record in $store.state.timeRecords")
-          div.slide-holder
+      el-carousel(:interval="4000", type="card", height="650px", indicator-position="none", arrow="always")
+        el-carousel-item(v-for="(record, i) in $store.state.timeRecords")
+          div.slide-holder(:class="'slide-bg-' + Number.parseInt(i % 10)")
             div.record-info
               h2 {{ record.year + '年' + record.month + '月' + record.date  + '日' }}
               h3 {{ days[record.day] }}
@@ -35,10 +35,28 @@ export default {
 #time-slide
   width: 100%
   padding-top: 100px
+  .slide-bg-0
+    background-image: url(../../../assets/slide-bg-0.jpg)
+  .slide-bg-1
+    background-image: url(../../../assets/slide-bg-1.jpg)
+  .slide-bg-2
+    background-image: url(../../../assets/slide-bg-2.jpg)
+  .slide-bg-3
+    background-image: url(../../../assets/slide-bg-3.jpg)
+  .slide-bg-5
+    background-image: url(../../../assets/slide-bg-5.jpg)
+  .slide-bg-6
+    background-image: url(../../../assets/slide-bg-6.jpg)
+  .slide-bg-7
+    background-image: url(../../../assets/slide-bg-7.jpg)
+  .slide-bg-8
+    background-image: url(../../../assets/slide-bg-8.jpg)
+  .slide-bg-9
+    background-image: url(../../../assets/slide-bg-9.jpg)
   .slide-holder
     width: 100%
     height: 100%
-    background: url(../../../assets/timeline-bg-0.jpg) no-repeat
+    background-repeat: no-repeat
     background-size: 100% 100%
     background-attachment: fixed
     position: relative
@@ -47,6 +65,6 @@ export default {
       position: absolute
       bottom: 0
       color: white
-      background: rgba(0, 0, 0, 0.3)
+      background: rgba(0, 0, 0, 0.5)
       padding-left: 35px
 </style>

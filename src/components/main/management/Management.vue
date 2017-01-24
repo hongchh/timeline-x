@@ -32,4 +32,6 @@ export default {
   height: 100%
   position: absolute
   padding-top: 30px
+  .el-card
+    background-color: rgba(0,0,0,0.2)
 </style>

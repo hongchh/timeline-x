@@ -28,11 +28,31 @@ export default {
         this.month = this.format(this.month)
       }
       let data = {
-        '学习': { value: 0, name: '学习' },
-        '工作': { value: 0, name: '工作' },
-        '运动': { value: 0, name: '运动' },
-        '休闲': { value: 0, name: '休闲' },
-        '娱乐': { value: 0, name: '娱乐' }
+        '学习': {
+          value: 0,
+          name: '学习',
+          itemStyle: { normal: { color: '#c5ef84' } }
+        },
+        '工作': {
+          value: 0,
+          name: '工作',
+          itemStyle: { normal: { color: '#f9ba2c' } }
+        },
+        '运动': {
+          value: 0,
+          name: '运动',
+          itemStyle: { normal: { color: '#3aecf5' } }
+        },
+        '休闲': {
+          value: 0,
+          name: '休闲',
+          itemStyle: { normal: { color: '#68f53a' } }
+        },
+        '娱乐': {
+          value: 0,
+          name: '娱乐',
+          itemStyle: { normal: { color: '#e0a6f3' } }
+        }
       }
       this.$store.state.timeRecords.filter(record => {
         return (Number.parseInt(record.year) ===
@@ -64,7 +84,13 @@ export default {
         title: {
           text: '分类时间统计',
           subtext: '单位：小时',
-          x: 'center'
+          x: 'center',
+          textStyle: {
+            color: 'white'
+          },
+          subtextStyle: {
+            color: 'white'
+          }
         },
         tooltip: {
           trigger: 'item',
@@ -74,7 +100,10 @@ export default {
           orient: 'vertical',
           left: '10%',
           top: '5%',
-          data: ['学习', '工作', '运动', '休闲', '娱乐']
+          data: ['学习', '工作', '运动', '休闲', '娱乐'],
+          textStyle: {
+            color: 'white'
+          }
         },
         series: [{
           name: '时间比重',

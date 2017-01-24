@@ -17,7 +17,7 @@ div#main
       el-col(:span="2")
         span.header-item(@click="lockScreen") 锁屏
   div#body
-    transition(name="slide")
+    transition(name="fade-no-scale")
       router-view
 </template>
 
@@ -43,11 +43,15 @@ export default {
   width: 100%
   height: 100%
   position: absolute
+  background: url(../../assets/main-bg.jpg) no-repeat
+  background-size: 100% 100%
+  background-attachment: fixed
   #header
     width: 100%
     height: 100px
     position: absolute
-    background-color: #4b71fd
+    background-color: rgba(0, 0, 0, 0.15)
+    box-shadow: 0px -3px 3px rgba(0,0,0,0.30) inset
     line-height: 100px
     z-index: 99
     .el-row
@@ -64,19 +68,14 @@ export default {
     position: absolute
     top: 100px
     bottom: 0
-    background: #eee
 
 .el-dropdown-menu .menu-link
   font-size: 20px
   text-decoration: none
   color: black
 
-.slide-enter-active, .slide-leave-active
-  transition: all .5s ease-out
-.slide-leave-active
-  transform: translate(0, -100%) scale(0.6)
-  opacity: 0
-.slide-enter
-  transform: translate(0, 100%) scale(0.6)
+.fade-enter-active, .fade-leave-active
+  transition: all 1s ease-out
+.fade-enter, .fade-leave-active
   opacity: 0
 </style>

@@ -53,9 +53,6 @@ export default {
   width: 100%
   height: 100%
   position: absolute
-  background: url(../../../assets/timeline-bg-0.jpg) no-repeat
-  background-size: 100% 100%
-  background-attachment: fixed
   overflow: scroll
   .timeline-wrapper, .timeline-wrapper *
     box-sizing: border-box
@@ -135,7 +132,7 @@ export default {
         .iconbg-brown, .iconbg-purple, .iconbg-indigo, .iconbg-orange
           box-shadow: 0 0 0 4px white,inset 0 2px 0 rgba(0,0,0,0.30),0 3px 0 4px rgba(0,0,0,0.30)
         .timeline-content
-          background: rgba(0, 0, 0, 0.3)
+          background: rgba(0, 0, 0, 0.2)
           color: white
           position: relative
           transition: all .4s
@@ -183,7 +180,7 @@ export default {
           right: auto
     .timeline:before
       content: ""
-      background-color: rgba(0, 0, 0, 0.3)
+      background-color: rgba(0, 0, 0, 0.2)
       border-radius: 2px
       margin-left: -2px
       position: absolute

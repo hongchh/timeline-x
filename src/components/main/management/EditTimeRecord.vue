@@ -86,6 +86,7 @@ export default {
   .el-row
     margin-bottom: 25px
     .el-col
+      color: white
       span
         display: block
         padding-top: 5px

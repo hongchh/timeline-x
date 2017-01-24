@@ -58,7 +58,13 @@ export default {
         title: {
           text: '每月时间统计',
           subtext: '单位：小时',
-          x: '5%'
+          x: '5%',
+          textStyle: {
+            color: 'white'
+          },
+          subtextStyle: {
+            color: 'white'
+          }
         },
         tooltip: {
           trigger: 'item',
@@ -69,7 +75,7 @@ export default {
           axisLabel: {
             inside: true,
             textStyle: {
-              color: '#fff'
+              color: 'white'
             }
           },
           axisTick: { show: false },
@@ -80,7 +86,7 @@ export default {
           max: 24,
           axisLine: { show: false },
           axisTick: { show: false },
-          axisLabel: { textStyle: { color: '#999' } }
+          axisLabel: { textStyle: { color: 'white' } }
         },
         dataZoom: [{ type: 'inside' }],
         series: [{
@@ -88,16 +94,16 @@ export default {
           itemStyle: {
             normal: {
               color: new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {offset: 0, color: '#83bff6'},
-                {offset: 0.5, color: '#188df0'},
-                {offset: 1, color: '#188df0'}
+                {offset: 0, color: '#ff4949'},
+                {offset: 0.5, color: '#f7ba2a'},
+                {offset: 1, color: '#13ce66'}
               ])
             },
             emphasis: {
               color: new Echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {offset: 0, color: '#2378f7'},
-                {offset: 0.7, color: '#2378f7'},
-                {offset: 1, color: '#83bff6'}
+                {offset: 0, color: '#fb1111'},
+                {offset: 0.7, color: '#efac0d'},
+                {offset: 1, color: '#02d45f'}
               ])
             }
           },
