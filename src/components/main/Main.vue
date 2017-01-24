@@ -26,8 +26,8 @@ export default {
   name: 'main',
   methods: {
     lockScreen () {
-      // TODO: 锁屏并跳转回到auth
-      this.$message('锁屏，待实现...')
+      this.$store.commit('LOCK')
+      this.$router.replace('/auth')
     }
   }
 }

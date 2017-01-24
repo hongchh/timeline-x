@@ -37,12 +37,13 @@ export default {
       if (!this.password) {
         this.setTip('密码不能为空')
       } else {
-        // TODO: 向后台验证密码
-        if (this.password === 'hongchh') {
-          this.$router.push('/main')
-        } else {
+        this.$store.dispatch('unlockScreen', this.password)
+        .then(() => {
+          this.$router.replace('/main')
+        })
+        .catch(() => {
           this.setTip('密码错误')
-        }
+        })
       }
     }
   }

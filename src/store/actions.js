@@ -1,9 +1,14 @@
 export default {
   unlockScreen ({commit}, password) {
     // TODO: 向服务器验证密码
-    if (password === 'hongchh') {
-      commit('UNLOCK')
-    }
+    return new Promise((resolve, reject) => {
+      if (password === 'hongchh') {
+        commit('UNLOCK')
+        resolve()
+      } else {
+        reject()
+      }
+    })
   },
 
   addRecord ({commit}, record) {
