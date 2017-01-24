@@ -13,5 +13,9 @@ export default {
 
   UPDATE_RECORD (state, record, i) {
     state.timeRecords[i] = record
+  },
+
+  FATCH_DATA (state, data) {
+    state.timeRecords = data
   }
 }

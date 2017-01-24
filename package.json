@@ -7,9 +7,11 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "fake-data": "node ./static/data/data-generator.js"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "echarts": "^3.4.0",
     "element-ui": "^1.1.5",
     "vue": "^2.1.0",

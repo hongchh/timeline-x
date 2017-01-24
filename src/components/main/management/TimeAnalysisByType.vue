@@ -35,8 +35,10 @@ export default {
         '娱乐': { value: 0, name: '娱乐' }
       }
       this.$store.state.timeRecords.filter(record => {
-        return (record.year === this.month.split('-')[0] &&
-          record.month === this.month.split('-')[1])
+        return (Number.parseInt(record.year) ===
+          Number.parseInt(this.month.split('-')[0]) &&
+          Number.parseInt(record.month) ===
+          Number.parseInt(this.month.split('-')[1]))
       }).forEach(record => {
         record.items.forEach(item => {
           data[item.type].value += Number.parseFloat(item.time)

@@ -30,7 +30,9 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/auth' && !store.state.lockScreen ||
+  if (to.path === '/') {
+    next('/auth')
+  } else if (to.path === '/auth' && !store.state.lockScreen ||
     to.path !== '/auth' && store.state.lockScreen) {
     next(false)
   } else {

@@ -29,6 +29,11 @@ export default {
       this.$store.commit('LOCK')
       this.$router.replace('/auth')
     }
+  },
+  created () {
+    if (this.$store.state.timeRecords.length === 0) {
+      this.$store.dispatch('fatchData')
+    }
   }
 }
 </script>

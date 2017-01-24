@@ -8,6 +8,9 @@
 # install dependencies
 npm install
 
+# generate fake data for the application
+npm run fake-data
+
 # serve with hot reload at localhost:8080
 npm run dev
 
@@ -53,7 +56,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
   "year": "number",
   "month": "number",
   "date": "number",
-  "day": "string"
+  "day": "number"
 }
 ```
 
@@ -76,7 +79,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
   "year": "2016",
   "month": "01",
   "date": "20",
-  "day": "星期五"
+  "day": "5"
 }
 ```
 

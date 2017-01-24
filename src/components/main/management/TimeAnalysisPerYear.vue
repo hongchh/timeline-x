@@ -30,7 +30,7 @@ export default {
       }
       let data = new Array(12).fill(0)
       this.$store.state.timeRecords.filter(record => {
-        return record.year === this.year
+        return Number.parseInt(record.year) === Number.parseInt(this.year)
       }).forEach(record => {
         record.items.forEach(item => {
           data[Number.parseInt(record.month) - 1] += Number.parseFloat(item.time)
