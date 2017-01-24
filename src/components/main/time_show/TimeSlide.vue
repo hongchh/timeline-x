@@ -2,12 +2,12 @@
 div#time-slide
   el-row(:gutter="20")
     el-col(:span="20", :offset="2")
-      el-carousel(:interval="5000", type="card", height="650px")
-        el-carousel-item(v-for="record in records")
+      el-carousel(:interval="5000", type="card", height="650px", indicator-position="none")
+        el-carousel-item(v-for="record in $store.state.timeRecords")
           div.slide-holder
             div.record-info
               h2 {{ record.year + '年' + record.month + '月' + record.date  + '日' }}
-              h3 {{ record.day }}
+              h3 {{ days[record.day] }}
               p(v-for="(item, index) in record.items")
                 {{ index + 1 + '. ' + item.content + ', ' + item.time + 'h.' }}
 </template>
@@ -17,46 +17,15 @@ export default {
   name: 'time-slide',
   data () {
     return {
-      records: [{
-        year: '2017',
-        month: '01',
-        date: '22',
-        day: '星期日',
-        icon_bg: 'iconbg-turqoise',
-        items: [{
-          content: '开发timeline-x',
-          time: '9'
-        }, {
-          content: '跑步',
-          time: '0.5'
-        }]
-      }, {
-        year: '2017',
-        month: '01',
-        date: '23',
-        day: '星期一',
-        icon_bg: 'iconbg-black',
-        items: [{
-          content: '开发timeline-x',
-          time: '9'
-        }, {
-          content: '跑步',
-          time: '0.5'
-        }]
-      }, {
-        year: '2017',
-        month: '01',
-        date: '24',
-        day: '星期二',
-        icon_bg: 'iconbg-black',
-        items: [{
-          content: '开发timeline-x',
-          time: '9'
-        }, {
-          content: '跑步',
-          time: '0.5'
-        }]
-      }]
+      days: [
+        '星期日',
+        '星期一',
+        '星期二',
+        '星期三',
+        '星期四',
+        '星期五',
+        '星期六'
+      ]
     }
   }
 }
