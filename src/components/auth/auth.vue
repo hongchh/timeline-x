@@ -24,7 +24,7 @@ export default {
     }
   },
   methods: {
-    setTip (tip) {
+    setTip (tip) { // 消息提示，1.5秒后自动关闭
       this.errorTip = tip
       this.disabled = false
       setTimeout(() => {
@@ -33,7 +33,7 @@ export default {
       }, 1500)
     },
 
-    signin () {
+    signin () { // 验证密码解除锁屏
       if (!this.password) {
         this.setTip('密码不能为空')
       } else {

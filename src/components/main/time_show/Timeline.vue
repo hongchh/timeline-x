@@ -2,7 +2,7 @@
 div#timeline
   div.timeline-wrapper
     div.timeline
-      div.timeline-records(v-for="(record, i) in revRecords")
+      div.timeline-records(v-for="(record, i) in this.$store.state.timeRecords")
         div.side-info
           span.year {{ record.year }}
         div.timeline-icon(:class="iconBg[Number.parseInt(i%12)]")
@@ -20,7 +20,7 @@ export default {
   name: 'timeline',
   data () {
     return {
-      iconBg: [
+      iconBg: [ // 图标背景颜色
         'iconbg-turqoise',
         'iconbg-black',
         'iconbg-brown',
@@ -34,7 +34,7 @@ export default {
         'iconbg-green',
         'iconbg-pink'
       ],
-      days: [
+      days: [ // 星期几中文映射
         '星期日',
         '星期一',
         '星期二',
@@ -43,11 +43,6 @@ export default {
         '星期五',
         '星期六'
       ]
-    }
-  },
-  computed: {
-    revRecords () {
-      return this.$store.state.timeRecords.reverse()
     }
   }
 }

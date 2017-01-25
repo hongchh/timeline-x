@@ -3,7 +3,7 @@ let html = require('fs').readFileSync(__dirname + '/../views/index.html')
 let model = require('../model')
 const PASSWORD = 'hongchh'
 
-index.post('/api/add', (req, res) => {
+index.post('/api/add', (req, res) => { // 添加记录
   try {
     model.set(req.body)
     res.json({ err: false })
@@ -12,7 +12,7 @@ index.post('/api/add', (req, res) => {
   }
 })
 
-index.post('/api/check', (req, res) => {
+index.post('/api/check', (req, res) => { // 验证密码解除锁屏
   if (req.body.password === PASSWORD) {
     res.json({ err: false })
   } else {

@@ -22,33 +22,31 @@ export default {
   },
   mounted () { this.drawChart() },
   computed: {
-    // 获取选中的年月份的记录并计算每天的总时间
     chartData () {
       if (typeof this.month !== 'string') {
         this.month = this.format(this.month)
       }
       let data = new Array(31).fill(0)
-      this.$store.state.timeRecords.filter(record => {
+      this.$store.state.timeRecords.filter(record => { // 过滤对应年月份的记录
         return (Number.parseInt(record.year) ===
           Number.parseInt(this.month.split('-')[0]) &&
           Number.parseInt(record.month) ===
           Number.parseInt(this.month.split('-')[1]))
-      }).forEach(record => {
+      }).forEach(record => { // 计算每一天的总时间
         record.items.forEach(item => {
           data[Number.parseInt(record.date) - 1] += Number.parseFloat(item.time)
         })
       })
       return data
     },
-    // 本月总的时间支出
-    totalTime () {
+    totalTime () { // 本月总的时间支出
       let total = 0
       this.chartData.forEach(data => (total += data))
       return total.toFixed(1)
     }
   },
   methods: {
-    format (date) {
+    format (date) { // 格式化年月份，2017-01
       let month = date.getMonth() + 1
       if (month < 10) month = '0' + month
       return date.getFullYear() + '-' + month
@@ -56,7 +54,7 @@ export default {
     drawChart () {
       let option = {// 渲染柱形图的配置
         title: {
-          text: '每月时间统计',
+          text: '月份时间统计',
           subtext: '单位：小时',
           x: '5%',
           textStyle: {

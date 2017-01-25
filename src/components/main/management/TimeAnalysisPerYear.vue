@@ -23,23 +23,21 @@ export default {
   },
   mounted () { this.drawChart() },
   computed: {
-    // 获取选中的年份的记录并计算每月的总时间
     chartData () {
       if (typeof this.year !== 'string') {
         this.year = this.year.getFullYear().toString()
       }
       let data = new Array(12).fill(0)
-      this.$store.state.timeRecords.filter(record => {
+      this.$store.state.timeRecords.filter(record => { // 过滤对应年份的数据
         return Number.parseInt(record.year) === Number.parseInt(this.year)
-      }).forEach(record => {
+      }).forEach(record => { // 计算每个月的总时间
         record.items.forEach(item => {
           data[Number.parseInt(record.month) - 1] += Number.parseFloat(item.time)
         })
       })
       return data
     },
-    // 本年总的时间支出
-    totalTime () {
+    totalTime () { // 本年总的时间支出
       let total = 0
       this.chartData.forEach(data => (total += data))
       return total.toFixed(1)
@@ -47,9 +45,9 @@ export default {
   },
   methods: {
     drawChart () {
-      let option = {// 渲染柱形图的配置
+      let option = { // 渲染柱形图的配置
         title: {
-          text: '每月时间统计',
+          text: '年份时间统计',
           subtext: '单位：小时',
           x: '5%',
           textStyle: {

@@ -55,7 +55,7 @@ export default {
     }
   },
   methods: {
-    handleCommand (command) {
+    handleCommand (command) { // 变更相应条目的类型
       command = command.split('-')
       this.records[command[1]].type = command[0]
     },
@@ -77,7 +77,7 @@ export default {
         return
       }
       let postRecords = []
-      this.records.forEach(r => { // 去除空白内容
+      this.records.forEach(r => { // 去除空白条目
         if (r.content) {
           postRecords.push(r)
         }

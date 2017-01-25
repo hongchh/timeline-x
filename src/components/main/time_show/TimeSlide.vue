@@ -17,7 +17,7 @@ export default {
   name: 'time-slide',
   data () {
     return {
-      days: [
+      days: [ // 星期几中文映射
         '星期日',
         '星期一',
         '星期二',

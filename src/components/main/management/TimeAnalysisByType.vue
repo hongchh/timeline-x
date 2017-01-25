@@ -22,7 +22,6 @@ export default {
   },
   mounted () { this.drawChart() },
   computed: {
-    // 填充图表的数据
     chartData () {
       if (typeof this.month !== 'string') {
         this.month = this.format(this.month)
@@ -54,27 +53,26 @@ export default {
           itemStyle: { normal: { color: '#e0a6f3' } }
         }
       }
-      this.$store.state.timeRecords.filter(record => {
+      this.$store.state.timeRecords.filter(record => { // 过滤对应年月份的记录
         return (Number.parseInt(record.year) ===
           Number.parseInt(this.month.split('-')[0]) &&
           Number.parseInt(record.month) ===
           Number.parseInt(this.month.split('-')[1]))
-      }).forEach(record => {
+      }).forEach(record => { // 计算每种分类的总时间
         record.items.forEach(item => {
           data[item.type].value += Number.parseFloat(item.time)
         })
       })
       return Object.values(data)
     },
-    // 本月总的时间支出
-    totalTime () {
+    totalTime () { // 本月总的时间支出
       let total = 0
       this.chartData.forEach(data => (total += data.value))
       return total.toFixed(1)
     }
   },
   methods: {
-    format (date) {
+    format (date) { // 格式化年月，2017-01
       let month = date.getMonth() + 1
       if (month < 10) month = '0' + month
       return date.getFullYear() + '-' + month

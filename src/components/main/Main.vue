@@ -20,12 +20,12 @@ div#main
 export default {
   name: 'main',
   methods: {
-    lockScreen () {
+    lockScreen () { // 锁屏
       this.$store.commit('LOCK')
       this.$router.replace('/auth')
     }
   },
-  created () {
+  created () { // 进入该界面之后如果没有数据则向服务器获取数据
     if (this.$store.state.timeRecords.length === 0) {
       this.$store.dispatch('fatchData')
     }

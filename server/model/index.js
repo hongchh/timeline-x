@@ -17,14 +17,14 @@ model = {
     for (let record of data) {
       if (int(record.year) === int(newRecord.year) &&
         int(record.month) === int(newRecord.month) &&
-        int(record.date) === int(newRecord.date)) {
+        int(record.date) === int(newRecord.date)) { // 更新已有记录
         record = newRecord
         saveIntoFile()
         return
       }
     }
-    data.push(newRecord)
-    data.sort((a, b) => {
+    data.push(newRecord) // 添加新纪录
+    data.sort((a, b) => { // 按照时间排序
       let t1 = new Date(a.year + '-' + a.month + '-' + a.date)
       let t2 = new Date(b.year + '-' + b.month + '-' + b.date)
       if (t1.getTime() < t2.getTime()) return 1

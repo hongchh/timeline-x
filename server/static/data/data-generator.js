@@ -42,4 +42,4 @@ for (let i = 0; i < 145; ++i) {
   })
 }
 
-fs.writeFileSync(__dirname + '/data.json', JSON.stringify(data))
+fs.writeFileSync(__dirname + '/data.json', JSON.stringify(data.reverse()))

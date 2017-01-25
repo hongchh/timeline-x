@@ -22,14 +22,14 @@ const router = new Router({
         { path: 'management', component: Management },
         { path: 'timeline', component: Timeline },
         { path: 'time-slide', component: TimeSlide },
-        { path: '', redirect: 'management' }
+        { path: '', redirect: 'timeline' }
       ]
     },
     { path: '/', redirect: '/auth' }
   ]
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => { // 对特定路径进行验证，增强锁屏功能
   if (to.path === '/') {
     next('/auth')
   } else if (to.path === '/auth' && !store.state.lockScreen) {
