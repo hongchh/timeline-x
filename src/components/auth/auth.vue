@@ -38,11 +38,9 @@ export default {
         this.setTip('密码不能为空')
       } else {
         this.$store.dispatch('unlockScreen', this.password)
-        .then(() => {
-          this.$router.replace('/main')
-        })
-        .catch(() => {
-          this.setTip('密码错误')
+        .then((err) => {
+          if (err) this.setTip('密码错误')
+          else this.$router.replace('/main')
         })
       }
     }

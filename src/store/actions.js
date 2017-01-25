@@ -2,22 +2,26 @@ import axios from 'axios'
 
 export default {
   unlockScreen ({commit}, password) {
-    // TODO: 向服务器验证密码
-    return new Promise((resolve, reject) => {
-      if (password === 'hongchh') {
-        commit('UNLOCK')
-        resolve()
+    return axios.post('/api/check', {
+      password: password
+    }).then((res) => {
+      if (!res || res.status !== 200 || res.data.err) {
+        return true
       } else {
-        reject()
+        commit('UNLOCK')
+        return false
       }
     })
   },
 
   addRecord ({commit}, record) {
-    // TODO: 将记录提交到服务器
-    return new Promise((resolve, reject) => {
-      commit('UPDATE_RECORD', record)
-      resolve(false)
+    return axios.post('/api/add', record).then((res) => {
+      if (!res || res.status !== 200 || res.data.err) {
+        return true
+      } else {
+        commit('UPDATE_RECORD', record)
+        return false
+      }
     })
   },
 

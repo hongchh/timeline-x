@@ -1,5 +1,5 @@
 let fs = require('fs')
-let data = fs.readFileSync(__dirname + '/../dist/static/data/data.json')
+let data = fs.readFileSync(__dirname + '/../static/data/data.json')
 let int = Number.parseInt
 
 data = JSON.parse(data)
@@ -34,3 +34,5 @@ model = {
     saveIntoFile()
   }
 }
+
+module.exports = model
