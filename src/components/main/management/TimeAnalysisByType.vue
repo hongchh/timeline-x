@@ -51,6 +51,11 @@ export default {
           value: 0,
           name: '娱乐',
           itemStyle: { normal: { color: '#e0a6f3' } }
+        },
+        '其他': {
+          value: 0,
+          name: '其他',
+          itemStyle: { normal: { color: '#e0a6a3' } }
         }
       }
       this.$store.state.timeRecords.filter(record => { // 过滤对应年月份的记录
@@ -98,7 +103,7 @@ export default {
           orient: 'vertical',
           left: '10%',
           top: '5%',
-          data: ['学习', '工作', '运动', '休闲', '娱乐'],
+          data: ['学习', '工作', '运动', '休闲', '娱乐', '其他'],
           textStyle: {
             color: 'white'
           }
