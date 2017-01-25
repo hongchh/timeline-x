@@ -2,7 +2,7 @@
 div#timeline
   div.timeline-wrapper
     div.timeline
-      div.timeline-records(v-for="(record, i) in $store.state.timeRecords.reverse()")
+      div.timeline-records(v-for="(record, i) in revRecords")
         div.side-info
           span.year {{ record.year }}
         div.timeline-icon(:class="iconBg[Number.parseInt(i%12)]")
@@ -43,6 +43,11 @@ export default {
         '星期五',
         '星期六'
       ]
+    }
+  },
+  computed: {
+    revRecords () {
+      return this.$store.state.timeRecords.reverse()
     }
   }
 }

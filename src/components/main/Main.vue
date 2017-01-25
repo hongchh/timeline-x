@@ -13,8 +13,7 @@ div#main
       el-col(:span="2")
         span.header-item(@click="lockScreen") 锁屏
   div#body
-    transition(name="fade-no-scale")
-      router-view
+    router-view
 </template>
 
 <script>
@@ -69,9 +68,4 @@ export default {
   font-size: 20px
   text-decoration: none
   color: black
-
-.fade-enter-active, .fade-leave-active
-  transition: all 1s ease-out
-.fade-enter, .fade-leave-active
-  opacity: 0
 </style>
