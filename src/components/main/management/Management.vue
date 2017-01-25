@@ -1,12 +1,13 @@
 <template lang="jade">
 div#management
-  el-row(:gutter="20")
-    el-col(:span="10", :offset="2")
-      time-analysis-per-month
-      time-analysis-per-year
-    el-col(:span="9", :offset="1")
-      time-analysis-by-type
-      edit-time-record
+  div#content-wrapper
+    el-row(:gutter="20")
+      el-col(:span="10", :offset="2")
+        time-analysis-per-month
+        time-analysis-per-year
+      el-col(:span="9", :offset="1")
+        time-analysis-by-type
+        edit-time-record
 </template>
 
 <script>
@@ -31,7 +32,24 @@ export default {
   width: 100%
   height: 100%
   position: absolute
-  padding-top: 30px
-  .el-card
-    background-color: rgba(0,0,0,0.2)
+  overflow-y: scroll
+  overflow-x: hidden
+  #content-wrapper
+    width: 100%
+    position: absolute
+    top: 30px
+    .el-card
+      background-color: rgba(0,0,0,0.2)
+      input
+        background-color: transparent
+        color: white
+.el-picker-panel, .el-dropdown-menu
+  background-color: rgba(0,0,0,0.3)
+.el-picker-panel, .el-picker-panel button, .el-dropdown, .el-dropdown-menu
+  color: white
+.el-month-table, .el-year-table, .el-date-table
+  td .cell, th
+    color: white
+  td .cell:hover, td.available:hover
+    background-color: #20c1ff
 </style>

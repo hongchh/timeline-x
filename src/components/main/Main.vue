@@ -4,16 +4,12 @@ div#main
     el-row(:gutter="20")
       el-col(:span="1", :offset="1")
         i.el-icon-time#logo
-      el-col(:span="2", :offset="14")
-        el-dropdown
-          span.header-item  时光展 <i class="el-icon-caret-bottom el-icon--right"></i>
-          el-dropdown-menu(slot="dropdown")
-            el-dropdown-item
-              router-link.menu-link(to="timeline") 轴线图
-            el-dropdown-item
-              router-link.menu-link(to="time-slide") 轮播图
+      el-col(:span="2", :offset="12")
+        router-link.header-item(to="timeline", active-class="header-item-active") 时光轴
       el-col(:span="2")
-        router-link.header-item(to="management") 管理
+        router-link.header-item(to="time-slide", active-class="header-item-active") 时光展
+      el-col(:span="2")
+        router-link.header-item(to="management", active-class="header-item-active") 管理
       el-col(:span="2")
         span.header-item(@click="lockScreen") 锁屏
   div#body
@@ -60,7 +56,7 @@ export default {
         font-size: 25px
         color: white
         text-decoration: none
-      .header-item:hover
+      .header-item:hover, .header-item-active
         color: #79f7af
         cursor: pointer
   #body

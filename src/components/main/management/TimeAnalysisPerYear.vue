@@ -8,7 +8,7 @@ div#time-analysis-per-year
       el-col(:span="5", :offset="1")
         el-input(:value="'Total: ' + totalTime", :disabled="true", placeholder="Total:")
       el-col(:span="5", :offset="1")
-        el-input(:value="'AVG: ' + (totalTime / chartData.filter(x => x!== 0).length)", :disabled="true", placeholder="AVG:")
+        el-input(:value="'AVG: ' + (totalTime / (chartData.filter(x => x!== 0).length)).toFixed(1)", :disabled="true", placeholder="AVG:")
 </template>
 
 <script>
@@ -41,8 +41,8 @@ export default {
     // 本年总的时间支出
     totalTime () {
       let total = 0
-      this.chartData.forEach(data => (total += data.value))
-      return total
+      this.chartData.forEach(data => (total += data))
+      return total.toFixed(1)
     }
   },
   methods: {

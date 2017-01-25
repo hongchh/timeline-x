@@ -66,6 +66,7 @@ export default {
       })
     },
     removeRecord () {
+      if (this.records.length < 2) return
       this.records.pop()
     },
     submitRecords () {
@@ -87,15 +88,14 @@ export default {
     margin-bottom: 25px
     .el-col
       color: white
-      span
-        display: block
-        padding-top: 5px
       #content input
         border: none
-        border-bottom: 1px solid black
+        border-bottom: 1px solid white
         border-radius: 0
       .el-input-number
         width: 135px
+        .el-input-number__decrease, .el-input-number__increase
+          color: white
   .el-row:last-child
     margin-bottom: 0
 </style>

@@ -8,7 +8,7 @@ div#time-analysis-by-type
       el-col(:span="5", :offset="1")
         el-input(:value="'Total: ' + totalTime", :disabled="true", placeholder="Total:")
       el-col(:span="5", :offset="1")
-        el-input(:value="'AVG: ' + (totalTime / 5)", :disabled="true", placeholder="AVG:")
+        el-input(:value="'AVG: ' + (totalTime / 5).toFixed(1)", :disabled="true", placeholder="AVG:")
 </template>
 
 <script>
@@ -70,7 +70,7 @@ export default {
     totalTime () {
       let total = 0
       this.chartData.forEach(data => (total += data.value))
-      return total
+      return total.toFixed(1)
     }
   },
   methods: {
