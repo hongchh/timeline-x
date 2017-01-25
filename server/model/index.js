@@ -25,12 +25,10 @@ model = {
     }
     data.push(newRecord)
     data.sort((a, b) => {
-      if (int(a.year) < int(b.year)) return -1
-      if (int(a.year) > int(b.year)) return 1
-      if (int(a.month) < int(b.month)) return -1
-      if (int(a.month) > int(b.month)) return 1
-      if (int(a.date) < int(b.date)) return -1
-      if (int(a.date) > int(b.date)) return 1
+      let t1 = new Date(a.year + '-' + a.month + '-' + a.date)
+      let t2 = new Date(b.year + '-' + b.month + '-' + b.date)
+      if (t1.getTime() < t2.getTime()) return 1
+      if (t1.getTime() > t2.getTime()) return -1
       return 0
     })
     saveIntoFile()

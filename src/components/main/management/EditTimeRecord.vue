@@ -12,7 +12,7 @@ div#edit-time-record
       el-col(:span="11")
         el-input#content(v-model="record.content", placeholder="内容")
       el-col(:span="5")
-        el-input-number(v-model="record.time", :step="0.1", :min="0", :max="24")
+        el-input-number(v-model="record.time", :step="0.1", :min="0.1", :max="24")
       el-col(:span="5", :offset="1")
         el-dropdown(@command="handleCommand")
           span {{ record.type }} <i class="el-icon-caret-bottom el-icon--right"></i>
@@ -34,7 +34,7 @@ div#edit-time-record
           el-button(type="primary", icon="check", @click="submitRecords")
 
   el-dialog(title="提示:", v-model="dialogVisible", size="tiny")
-    span 请选择日期
+    span {{ dialogContent }}
     span(slot="footer")
       el-button(@click="dialogVisible = false") 确定
 </template>
@@ -46,9 +46,10 @@ export default {
     return {
       date: '',
       dialogVisible: false,
+      dialogContent: '',
       records: [{
         content: '',
-        time: '0',
+        time: '0.1',
         type: '学习'
       }]
     }
@@ -61,7 +62,7 @@ export default {
     addRecord () {
       this.records.push({
         content: '',
-        time: '0',
+        time: '0.1',
         type: '学习'
       })
     },
@@ -70,11 +71,41 @@ export default {
       this.records.pop()
     },
     submitRecords () {
-      if (this.date === '') {
+      if (this.date === '') { // 没有选择日期
         this.dialogVisible = true
+        this.dialogContent = '请选择日期'
+        return
       }
-      // TODO: 提交记录中的非空记录
-      console.log(this.records)
+      let postRecords = []
+      this.records.forEach(r => { // 去除空白内容
+        if (r.content) {
+          postRecords.push(r)
+        }
+      })
+      if (postRecords.length === 0) { // 没有输入内容
+        this.dialogVisible = true
+        this.dialogContent = '请输入相应的事项记录'
+        return
+      }
+
+      let date = new Date(this.date)
+      this.$store.dispatch('addRecord', {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        date: date.getDate(),
+        day: date.getDay(),
+        items: postRecords
+      }).then((err) => {
+        this.dialogVisible = true
+        this.dialogContent = err ? '提交失败' : '提交成功'
+        if (!err) {
+          this.records = [{
+            content: '',
+            time: '0.1',
+            type: '学习'
+          }]
+        }
+      })
     }
   }
 }
