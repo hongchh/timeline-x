@@ -9,7 +9,7 @@
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "fake-data": "node ./static/data/data-generator.js",
-    "start": "node ./server/server.js"
+    "back-end": "node ./server/server.js"
   },
   "dependencies": {
     "axios": "^0.15.3",

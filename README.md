@@ -1,6 +1,6 @@
-# timeline-x
+# Timeline-X
 
-> A Simple Timeline Application
+> A Simple Timeline Application. SPA. Powered By Vue/Vue-router/Vuex.
 
 ## Build Setup
 
@@ -8,14 +8,17 @@
 # install dependencies
 npm install
 
-# generate fake data for the application
+# generate fake data
 npm run fake-data
 
-# serve with hot reload at localhost:8080
+# [front-end-dev] serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
+# [front-end-dev] build for production with minification
 npm run build
+
+# [back-end-dev] start server for the application
+npm back-end
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
@@ -109,4 +112,26 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
       │     └─EditTimeRecord：时间记录编辑组件
       ├─Timeline：【轴线图】
       └─TimeSlide：【轮播图】
+```
+
+## 主要文件结构
+```txt
+└─build：构建用到的相关文件
+├─config：构建的配置文件
+├─server：应用的服务器源码
+    ├─controller：服务端业务逻辑
+    ├─model：数据存储逻辑
+    ├─static：静态文件
+    ├─views：应用的视图文件
+    ├─app.js：express服务器配置文件
+    └─server.js：服务器启动文件
+├─src：前端开发源码
+    ├─assets：图片等静态资源
+    ├─components：前端组件
+    ├─router：前端路由
+    ├─store：vuex的store
+    ├─App.vue：应用的外层结构
+    └─entry.js：应用的入口文件
+├─static：前端开发过程中用到的静态文件
+    └─data：存放伪数据以及伪数据生成器
 ```
