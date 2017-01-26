@@ -5,7 +5,7 @@ let int = Number.parseInt
 data = JSON.parse(data)
 
 const saveIntoFile = () => {
-  fs.writeFile(__dirname + '/../static/data/data.json', JSON.stringify(data))
+  fs.writeFileSync(__dirname + '/../static/data/data.json', JSON.stringify(data))
 }
 
 model = {
@@ -18,7 +18,7 @@ model = {
       if (int(record.year) === int(newRecord.year) &&
         int(record.month) === int(newRecord.month) &&
         int(record.date) === int(newRecord.date)) { // 更新已有记录
-        record = newRecord
+        record.items = newRecord.items
         saveIntoFile()
         return
       }

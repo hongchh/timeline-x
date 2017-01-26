@@ -14,7 +14,7 @@ export default {
       if (int(record.year) === int(newRecord.year) &&
         int(record.month) === int(newRecord.month) &&
         int(record.date) === int(newRecord.date)) { // 对原有记录的更新
-        record = newRecord
+        record.items = newRecord.items
         return
       }
     }
