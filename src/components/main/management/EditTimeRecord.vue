@@ -22,6 +22,7 @@ div#edit-time-record
             el-dropdown-item(:command="'休闲-' + index") 休闲
             el-dropdown-item(:command="'娱乐-' + index") 娱乐
             el-dropdown-item(:command="'运动-' + index") 运动
+            el-dropdown-item(:command="'其他-' + index") 其他
     el-row(:gutter="20")
       el-col(:span="2", :offset="9")
         el-tooltip(content="添加条目", placement="top")

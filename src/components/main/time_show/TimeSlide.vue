@@ -8,8 +8,7 @@ div#time-slide
             div.record-info
               h2 {{ record.year + '年' + record.month + '月' + record.date  + '日' }}
               h3 {{ days[record.day] }}
-              p(v-for="(item, index) in record.items")
-                {{ index + 1 + '. ' + item.content + ', ' + item.time + 'h.' }}
+              p(v-for="(item, index) in record.items") {{ index + 1 + '. ' + item.content + ', ' + item.time + 'h.' }}
 </template>
 
 <script>

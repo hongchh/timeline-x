@@ -11,8 +11,7 @@ div#timeline
         div.timeline-content
           h2.day {{ days[record.day] }}
           div.details
-            p(v-for="(item, index) in record.items")
-              {{ index + 1 + '. ' + item.content + ', ' + item.time + 'h.' }}
+            p(v-for="(item, index) in record.items") {{ index + 1 + '. ' + item.content + ', ' + item.time + 'h.' }}
 </template>
 
 <script>

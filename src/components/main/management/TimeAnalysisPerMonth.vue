@@ -37,11 +37,12 @@ export default {
           data[Number.parseInt(record.date) - 1] += Number.parseFloat(item.time)
         })
       })
+      for (let i = 0; i < data.length; ++i) { data[i] = data[i].toFixed(1) }
       return data
     },
     totalTime () { // 本月总的时间支出
       let total = 0
-      this.chartData.forEach(data => (total += data))
+      this.chartData.forEach(data => (total += Number.parseFloat(data)))
       return total.toFixed(1)
     }
   },

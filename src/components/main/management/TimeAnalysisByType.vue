@@ -3,12 +3,10 @@ div#time-analysis-by-type
   el-card
     div#pie-chart
     el-row(:gutter="20")
-      el-col(:span="7", :offset="2")
+      el-col(:span="7", :offset="4")
         el-date-picker(v-model="month", type="month", placeholder="选择月份", @change="drawChart")
-      el-col(:span="5", :offset="1")
+      el-col(:span="7", :offset="2")
         el-input(:value="'Total: ' + totalTime", :disabled="true", placeholder="Total:")
-      el-col(:span="5", :offset="1")
-        el-input(:value="'AVG: ' + (totalTime / 5).toFixed(1)", :disabled="true", placeholder="AVG:")
 </template>
 
 <script>
@@ -68,11 +66,13 @@ export default {
           data[item.type].value += Number.parseFloat(item.time)
         })
       })
-      return Object.values(data)
+      data = Object.values(data)
+      data.forEach(d => (d.value = d.value.toFixed(1)))
+      return data
     },
     totalTime () { // 本月总的时间支出
       let total = 0
-      this.chartData.forEach(data => (total += data.value))
+      this.chartData.forEach(data => (total += Number.parseFloat(data.value)))
       return total.toFixed(1)
     }
   },
