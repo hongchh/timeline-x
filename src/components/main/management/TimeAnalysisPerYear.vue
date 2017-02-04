@@ -8,7 +8,7 @@ div#time-analysis-per-year
       el-col(:span="5", :offset="1")
         el-input(:value="'Total: ' + totalTime", :disabled="true", placeholder="Total:")
       el-col(:span="5", :offset="1")
-        el-input(:value="'AVG: ' + (totalTime / (chartData.filter(x => x!== 0).length)).toFixed(1)", :disabled="true", placeholder="AVG:")
+        el-input(:value="'AVG: ' + (totalTime / (chartData.filter(x => Number.parseInt(x) !== 0).length)).toFixed(1)", :disabled="true", placeholder="AVG:")
 </template>
 
 <script>
