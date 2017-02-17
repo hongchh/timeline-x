@@ -22,7 +22,7 @@ npm run build
 # 启动后端之前需要先完成构建得到前端的资源
 # 验证密码为"hongchh"，可以在/server/controller/index.js里面修改密码
 # 应用比较简单故没有使用到数据库，所有数据都为文件存储，项目主要关注前端开发
-npm back-end
+npm run back-end
 ```
 
 ## 二、成品展示
