@@ -11,18 +11,19 @@ npm install
 # 生成伪数据（开发用）
 npm run fake-data
 
-# 前端开发，localhost:8080
-# 前端已经完成跟后端对接，启动开发模式之前需要把/src/store/action.js相应的代码解注释或者注释
-npm run dev
-
-# 构建最终产品
-npm run build
-
-# 后端开发，localhost:8080
+# API服务器，localhost:8081
 # 启动后端之前需要先完成构建得到前端的资源
 # 验证密码为"hongchh"，可以在/server/controller/index.js里面修改密码
 # 应用比较简单故没有使用到数据库，所有数据都为文件存储，项目主要关注前端开发
 npm run back-end
+
+# 前端开发，localhost:8080
+# dev-server已经使用http-proxy完成跟后端API的对接
+# 在num run dev之前必须先启动服务器，即在另一个命令行窗口下执行npm run back-end
+npm run dev
+
+# 构建最终产品
+npm run build
 ```
 
 ## 二、成品展示
