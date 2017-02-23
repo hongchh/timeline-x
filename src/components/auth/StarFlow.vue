@@ -20,7 +20,7 @@ class Star {
 
   move () {
     this.position.y -= this.velocity
-    this.alpha -= 0.0008
+    this.alpha -= 0.001
   }
 }
 

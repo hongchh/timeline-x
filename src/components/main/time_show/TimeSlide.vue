@@ -1,14 +1,10 @@
 <template lang="jade">
 div#time-slide
-  el-row(:gutter="20")
-    el-col(:span="20", :offset="2")
-      el-carousel(:interval="4000", type="card", height="650px", indicator-position="none", arrow="always")
-        el-carousel-item(v-for="(record, i) in $store.state.timeRecords")
-          div.slide-holder(:class="'slide-bg-' + Number.parseInt(i % 10)")
-            div.record-info
-              h2 {{ record.year + '年' + record.month + '月' + record.date  + '日' }}
-              h3 {{ days[record.day] }}
-              p(v-for="(item, index) in record.items") {{ index + 1 + '. ' + item.content + ', ' + item.time + 'h.' }}
+  div.slide(v-for="(record, i) in $store.state.timeRecords", :class="'slide-bg-' + Number.parseInt(i % 10)")
+    div.record-info
+      h2 {{ record.year + '年' + record.month + '月' + record.date  + '日' }}
+      h3 {{ days[record.day] }}
+      p(v-for="(item, index) in record.items") {{ index + 1 + '. ' + item.content + ', ' + item.time + 'h.' }}
 </template>
 
 <script>
@@ -32,8 +28,11 @@ export default {
 
 <style lang="sass">
 #time-slide
-  width: 100%
-  padding-top: 100px
+  padding: 20px
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: center
   .slide-bg-0
     background-image: url(../../../assets/slide-bg-0.jpg)
   .slide-bg-1
@@ -42,6 +41,8 @@ export default {
     background-image: url(../../../assets/slide-bg-2.jpg)
   .slide-bg-3
     background-image: url(../../../assets/slide-bg-3.jpg)
+  .slide-bg-4
+    background-image: url(../../../assets/slide-bg-4.jpg)
   .slide-bg-5
     background-image: url(../../../assets/slide-bg-5.jpg)
   .slide-bg-6
@@ -52,18 +53,26 @@ export default {
     background-image: url(../../../assets/slide-bg-8.jpg)
   .slide-bg-9
     background-image: url(../../../assets/slide-bg-9.jpg)
-  .slide-holder
-    width: 100%
-    height: 100%
+  .slide
+    width: 30%
+    height: 300px
     background-repeat: no-repeat
     background-size: 100% 100%
-    background-attachment: fixed
     position: relative
+    display: inline-block
+    margin: 5px
     .record-info
-      width: 100%
       position: absolute
       bottom: 0
+      right: 0
+      left: 0
       color: white
       background: rgba(0, 0, 0, 0.5)
-      padding-left: 35px
+      padding-left: 15px
+      h2
+        font-size: 18px
+      h3, p
+        font-size: 14px
+      h2, h3, p
+        margin: 5px
 </style>

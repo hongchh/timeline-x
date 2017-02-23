@@ -52,7 +52,6 @@ export default {
   width: 100%
   height: 100%
   position: absolute
-  overflow: scroll
   .timeline-wrapper, .timeline-wrapper *
     box-sizing: border-box
     padding: 0
@@ -62,46 +61,46 @@ export default {
     font-family: Arial,Helvetica,sans-serif
     font-weight: 400
     position: absolute
-    top: 4em
+    top: 3em
     left: 5%
     .timeline
-      padding: 20px 0
+      padding: 15px 0
       position: relative
       .timeline-records
         margin: 0
         border: 0 none
-        padding: 0 60px 5px 0
+        padding: 0 45px 4px 0
         width: 50%
         .side-info
           left: 50%
-          margin: 45px 0 0 50px
+          margin: 34px 0 0 38px
           position: absolute
-          font-weight: 500
+          font-weight: 375
           color: white
         .timeline-icon
           background: #fff
-          line-height: 70px
+          line-height: 52px
           position: absolute
           text-align: center
-          margin: 22px 0 0 -35px
-          border-radius: 40px
+          margin: 16px 0 0 -26px
+          border-radius: 30px
           color: #FFF
-          font-size: 18px
-          height: 70px
-          width: 70px
+          font-size: 14px
+          height: 52px
+          width: 52px
           left: 50%
           z-index: 10
           .month
             font-family: Arial,Helvetica,sans-serif
-            line-height: 30px
-            font-weight: 500
-            font-size: 13px
-            padding: 5px 0
+            line-height: 22px
+            font-weight: 375
+            font-size: 10px
+            padding: 4px 0
             .date
               display: block
-              line-height: 12px
-              font-weight: 700
-              font-size: 30px
+              line-height: 9px
+              font-weight: 525
+              font-size: 22px
         .iconbg-turqoise
           background: #28C0C6
         .iconbg-black
@@ -136,21 +135,21 @@ export default {
           position: relative
           transition: all .4s
           border-radius: 10px
-          padding: 30px
-          box-shadow: 0px -5px 5px rgba(0,0,0,0.30) inset
+          padding: 22px
+          box-shadow: 0px -3px 3px rgba(0,0,0,0.30) inset
           .day
-            font-size: 18px
+            font-size: 14px
             font-family: Arial,Helvetica,sans-serif
-            margin: 0 0 10px
+            margin: 0 0 8px
             color: #00efc8
-            font-weight: 500
+            font-weight: 375
           .details
             margin: 0
             p
               margin: 0
-              line-height: 24px
-              font-size: 18px
-              font-weight: 400
+              line-height: 18px
+              font-size: 14px
+              font-weight: 300
         .timeline-content:after
           content: ""
           display: block
@@ -161,10 +160,10 @@ export default {
           top: 26px
       .timeline-records:nth-child(even)
         margin-left: 50%
-        padding: 0 0 5px 60px
+        padding: 0 0 4px 45px
         .side-info
           left: auto
-          margin: 25px 50px 0 0
+          margin: 18px 38px 0 0
           text-align: right
           right: 50%
         .timeline-content:before

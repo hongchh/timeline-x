@@ -58,6 +58,6 @@ export default {
   #auth-input
     position: absolute
     width: 100%
-    height: 10%
-    top: 45%
+    height: 30px
+    top: calc(50% - 15px)
 </style>

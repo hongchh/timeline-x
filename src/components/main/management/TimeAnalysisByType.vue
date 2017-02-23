@@ -3,9 +3,9 @@ div#time-analysis-by-type
   el-card
     div#pie-chart
     el-row(:gutter="20")
-      el-col(:span="7", :offset="4")
+      el-col(:span="8", :offset="2")
         el-date-picker(v-model="month", type="month", placeholder="选择月份", @change="drawChart")
-      el-col(:span="7", :offset="2")
+      el-col(:span="8", :offset="4")
         el-input(:value="'Total: ' + totalTime", :disabled="true", placeholder="Total:")
 </template>
 
@@ -101,7 +101,7 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          left: '10%',
+          left: '5%',
           top: '5%',
           data: ['学习', '工作', '运动', '休闲', '娱乐', '其他'],
           textStyle: {
@@ -112,7 +112,7 @@ export default {
           name: '时间比重',
           type: 'pie',
           radius: '60%',
-          center: ['50%', '55%'],
+          center: ['50%', '60%'],
           data: this.chartData,
           itemStyle: {
             emphasis: {
@@ -135,5 +135,5 @@ export default {
   width: 100%
   #pie-chart
     width: 100%
-    height: 520px
+    height: 400px
 </style>

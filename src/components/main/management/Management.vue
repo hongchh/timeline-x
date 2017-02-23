@@ -1,11 +1,11 @@
 <template lang="jade">
 div#management
   div#content-wrapper
-    el-row(:gutter="20")
-      el-col(:span="10", :offset="2")
+    el-row(:gutter="10")
+      el-col(:span="12", :offset="1")
         time-analysis-per-month
         time-analysis-per-year
-      el-col(:span="9", :offset="1")
+      el-col(:span="10")
         time-analysis-by-type
         edit-time-record
 </template>
@@ -32,12 +32,10 @@ export default {
   width: 100%
   height: 100%
   position: absolute
-  overflow-y: scroll
-  overflow-x: hidden
   #content-wrapper
     width: 100%
     position: absolute
-    top: 30px
+    top: 25px
     .el-card
       background-color: rgba(0,0,0,0.2)
       input

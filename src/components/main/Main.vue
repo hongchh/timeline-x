@@ -43,16 +43,16 @@ export default {
   background-attachment: fixed
   #header
     width: 100%
-    height: 100px
+    height: 75px
     position: absolute
     background-color: rgba(0, 0, 0, 0.15)
     box-shadow: 0px -3px 3px rgba(0,0,0,0.30) inset
-    line-height: 100px
+    line-height: 75px
     z-index: 99
     .el-row
       vertical-align: middle
       .header-item, #logo
-        font-size: 25px
+        font-size: 18px
         color: white
         text-decoration: none
       .header-item:hover, .header-item-active
@@ -61,11 +61,8 @@ export default {
   #body
     width: 100%
     position: absolute
-    top: 100px
+    top: 75px
     bottom: 0
-
-.el-dropdown-menu .menu-link
-  font-size: 20px
-  text-decoration: none
-  color: black
+    overflow-y: scroll
+    overflow-x: hidden
 </style>

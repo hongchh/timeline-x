@@ -3,11 +3,11 @@ div#time-analysis-per-year
   el-card
     div#bar-chart-year
     el-row(:gutter="20")
-      el-col(:span="6", :offset="3")
+      el-col(:span="7", :offset="1")
         el-date-picker(v-model="year", type="year", placeholder="选择年份", @change="drawChart")
-      el-col(:span="5", :offset="1")
+      el-col(:span="6", :offset="2")
         el-input(:value="'Total: ' + totalTime", :disabled="true", placeholder="Total:")
-      el-col(:span="5", :offset="1")
+      el-col(:span="6", :offset="1")
         el-input(:value="'AVG: ' + (totalTime / (chartData.filter(x => Number.parseInt(x) !== 0).length)).toFixed(1)", :disabled="true", placeholder="AVG:")
 </template>
 
@@ -50,7 +50,7 @@ export default {
         title: {
           text: '年份时间统计',
           subtext: '单位：小时',
-          x: '5%',
+          x: '2%',
           textStyle: {
             color: 'white'
           },
@@ -65,7 +65,7 @@ export default {
         xAxis: {
           data: new Array(12).fill(0).map((v, i) => i + 1),
           axisLabel: {
-            inside: true,
+            interval: 0,
             textStyle: {
               color: 'white'
             }
@@ -111,9 +111,9 @@ export default {
 
 <style lang="sass">
 #time-analysis-per-year
-  margin-top: 20px
+  margin-top: 15px
   width: 100%
   #bar-chart-year
     width: 100%
-    height: 320px
+    height: 240px
 </style>

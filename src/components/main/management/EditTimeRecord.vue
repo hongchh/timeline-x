@@ -1,19 +1,19 @@
 <template lang="jade">
 div#edit-time-record
   el-card
-    el-row(:gutter="20")
+    el-row(:gutter="5")
       el-col(:span="6")
         h3 编辑时间记录
-      el-col(:span="8", :offset="10")
+      el-col(:span="8", :offset="6")
         el-date-picker#edit-time-record-date(v-model="date", type="date", placeholder="选择日期", :editable="false")
-    el-row(:gutter="20", v-for="(record, index) in records")
-      el-col(:span="1", :offset="1")
+    el-row(:gutter="10", v-for="(record, index) in records")
+      el-col(:span="1")
         span {{ index + 1 }}.
-      el-col(:span="11")
+      el-col(:span="14")
         el-input#content(v-model="record.content", placeholder="内容")
-      el-col(:span="5")
-        el-input-number(v-model="record.time", :step="0.1", :min="0.1", :max="24")
-      el-col(:span="5", :offset="1")
+      el-col(:span="4")
+        el-input(type="number", v-model="record.time", :step="0.1", :min="0.1", :max="24")
+      el-col(:span="4", :offset="1")
         el-dropdown(@command="handleCommand")
           span {{ record.type }} <i class="el-icon-caret-bottom el-icon--right"></i>
           el-dropdown-menu(slot="dropdown")
@@ -23,14 +23,14 @@ div#edit-time-record
             el-dropdown-item(:command="'娱乐-' + index") 娱乐
             el-dropdown-item(:command="'运动-' + index") 运动
             el-dropdown-item(:command="'其他-' + index") 其他
-    el-row(:gutter="20")
-      el-col(:span="2", :offset="9")
+    el-row(:gutter="10")
+      el-col(:span="3", :offset="7")
         el-tooltip(content="添加条目", placement="top")
           el-button(type="primary", icon="plus", @click="addRecord")
-      el-col(:span="2")
+      el-col(:span="3")
         el-tooltip(content="删除条目", placement="top")
           el-button(type="primary", icon="minus", @click="removeRecord")
-      el-col(:span="2")
+      el-col(:span="3")
         el-tooltip(content="提交记录", placement="top")
           el-button(type="primary", icon="check", @click="submitRecords")
 
@@ -115,19 +115,15 @@ export default {
 <style lang="sass" scope>
 #edit-time-record
   width: 100%
-  margin-top: 20px
+  margin-top: 15px
   .el-row
-    margin-bottom: 25px
+    margin-bottom: 15px
     .el-col
       color: white
       #content input
         border: none
         border-bottom: 1px solid white
         border-radius: 0
-      .el-input-number
-        width: 135px
-        .el-input-number__decrease, .el-input-number__increase
-          color: white
   .el-row:last-child
     margin-bottom: 0
 </style>
